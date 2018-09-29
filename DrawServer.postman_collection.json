@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "a71e1f9e-763a-4827-96a6-88e601e9318a",
+		"name": "DrawServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TFSSD",
+			"item": [
+				{
+					"name": "DrawServer Post Init TFSSD",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"globals()[\\\"icanseeapi\\\"] = ICanSeeApiLib()\",\n\t\t\"globals()[\\\"icanseeapi\\\"].init()\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+						},
+						"url": "http://{{host}}:5000/task"
+					},
+					"response": []
+				},
+				{
+					"name": "DrawServer Post TFSSD",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"\",\n\t\t\"result = icanseeapi.process(imageSrc)\\noutput = result\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+						},
+						"url": "http://{{host}}:5000/task"
+					},
+					"response": []
+				},
+				{
+					"name": "DrawServer Post TFSSD Unload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"globals()[\\\"icanseeapi\\\"] = None\",\n\t\t\"\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+						},
+						"url": "http://{{host}}:5000/task"
+					},
+					"response": []
+				},
+				{
+					"name": "DrawServer Post Init Image Source TFSSD",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"globals()[\\\"imageSrc\\\"] = cv2.imread(\\\"image.jpg\\\")\",\n\t\t\"\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+						},
+						"url": "http://{{host}}:5000/task"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DrawServer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"\",\n\t\t\"result = tfnet.return_predict(imageSrc)\\noutput = ResultToJson(str(result))\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post EnDev",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Fbp\":[\r\n\t\t\"Start\",\r\n\t\t\"\",\r\n\t\t\"globals()[\\\"ExecuteDevelopmentCode\\\"] = True\"\r\n\t\t],\r\n\t\"RunOnce\": true,\r\n\t\"InfiniteLoop\": false,\r\n\t\"LoopLimit\": 1,\r\n\t\"ReturnResult\": true\r\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post Init TinyYolo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Fbp\":[\r\n\t\t\"Start\",\r\n\t\t\"globals()[\\\"options\\\"] = {\\\"model\\\": \\\"cfg/tiny-yolo-voc.cfg\\\", \\\"load\\\": \\\"bin/tiny-yolo-voc.weights\\\", \\\"threshold\\\": 0.1, \\\"gpu\\\":0.7}\\nglobals()[\\\"tfnet\\\"] = TFNet(options)\",\r\n\t\t\"\"\r\n\t\t],\r\n\t\"RunOnce\": true,\r\n\t\"InfiniteLoop\": false,\r\n\t\"LoopLimit\": 1,\r\n\t\"ReturnResult\": false\r\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post Init Yolo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"globals()[\\\"options\\\"] = {\\\"model\\\": \\\"cfg/yolo-voc.cfg\\\", \\\"load\\\": \\\"bin/yolo.weights\\\", \\\"threshold\\\": 0.1, \\\"gpu\\\":0.7}\\nglobals()[\\\"tfnet\\\"] = TFNet(options)\",\n\t\t\"\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post Init Image Source",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"globals()[\\\"imageSrc\\\"] = cv2.imread(\\\"./sample_img/sample_dog.jpg\\\")\",\n\t\t\"\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post Init Camera Source",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"globals()['cap'] = cv2.VideoCapture(0)\\nret, globals()['imageSrc'] = globals()['cap'].read()\",\n\t\t\"\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post Read Camera",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"ret, frame = globals()['cap'].read()\\nglobals()[\\\"imageSrc\\\"] = frame\",\n\t\t\"\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post Cancel Camera",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"globals()['cap'] = None\",\n\t\t\"\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		},
+		{
+			"name": "ChatApiController",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"Hello\""
+				},
+				"url": "http://localhost:20000/ChatApi",
+				"description": "IUserResponse"
+			},
+			"response": []
+		},
+		{
+			"name": "MachineMessageApiController",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"Hello\""
+				},
+				"url": "http://localhost:20000/MachineMessageApi",
+				"description": "IMachineMessage"
+			},
+			"response": []
+		},
+		{
+			"name": "DrawServer Post PythonToICAN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Fbp\":[\n\t\t\"Start\",\n\t\t\"\",\n\t\t\"PostResult('localhost', 'Hello')\"\n\t\t],\n\t\"RunOnce\": true,\n\t\"InfiniteLoop\": false,\n\t\"LoopLimit\": 1,\n\t\"ReturnResult\": true\n}"
+				},
+				"url": "http://{{host}}:5000/task"
+			},
+			"response": []
+		}
+	]
+}
